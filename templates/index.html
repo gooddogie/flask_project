@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block body %}
+<h1 class="my-4">Список сотрудников</h1>
+<!-- Кнопка для перехода к иерархии сотрудников -->
+<a href="{{ url_for('list') }}" class="btn btn-primary mb-4">Перейти к иерархии сотрудников</a>
+
+<!-- Форма поиска сотрудников -->
+<form id="search-form" class="mb-4">
+    <div class="form-group">
+        <!-- Поле ввода для поиска -->
+        <input type="text" name="search" id="search" class="form-control" placeholder="Поиск сотрудников">
+    </div>
+    <!-- Кнопка отправки формы для поиска -->
+    <button type="submit" class="btn btn-primary">Искать</button>
+</form>
+
+<!-- Таблица для отображения списка сотрудников -->
+<table class="table table-striped table-bordered mt-4">
+    <thead>
+        <tr>
+            <!-- Заголовки таблицы с ссылками для сортировки -->
+            <th><a href="{{ url_for('index', sort_by='full_name') }}">ФИО</a></th>
+            <th><a href="{{ url_for('index', sort_by='position') }}">Должность</a></th>
+            <th><a href="{{ url_for('index', sort_by='hire_date') }}">Дата приёма</a></th>
+            <th><a href="{{ url_for('index', sort_by='salary') }}">Заработная плата</a></th>
+            <th><a href="{{ url_for('index', sort_by='manager') }}">Начальник</a></th>
+        </tr>
+    </thead>
+    <tbody id="employee-table">
+        <!-- Цикл для отображения каждого сотрудника в таблице -->
+        {% for employee in employees %}
+        <tr>
+            <!-- Ячейки таблицы с данными о сотруднике -->
+            <td>{{ employee.full_name }}</td>
+            <td>{{ employee.position }}</td>
+            <td>{{ employee.hire_date }}</td>
+            <td>{{ int(employee.salary) }}</td>
+            <td>{{ employee.manager.full_name if employee.manager else 'None' }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+{% endblock %}

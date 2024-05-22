@@ -1,0 +1,16 @@
+<!-- AJAX Список, откуда после берутся данные -->
+{% for employee in employees %}
+<tr>
+    <td>{{ employee.full_name }}</td>
+    <td>{{ employee.position }}</td>
+    <td>{{ employee.hire_date }}</td>
+    <td>{{ int(employee.salary) }}</td>
+    <td>
+        {% if employee.manager %}
+            {{ employee.manager.full_name }}
+        {% else %}
+            None
+        {% endif %}
+    </td>
+</tr>
+{% endfor %}

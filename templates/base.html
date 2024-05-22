@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Объявление кодировки документа -->
+    <meta charset="UTF-8">
+    <!-- Определение масштабирования и размера окна просмотра -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Совместимость с Internet Explorer -->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Подключение внешнего стилевого файла Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Подключение собственного стилевого файла -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <!-- Блок для добавления дополнительных метаданных в шаблоне -->
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <!-- Основной контейнер с содержимым -->
+    <div class="container">
+        <!-- Блок для основного содержимого страницы -->
+        {% block body %}
+        {% endblock %}
+    </div>
+    <!-- Подключение библиотеки Popper.js для работы с всплывающими окнами Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <!-- Подключение скриптов Bootstrap -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

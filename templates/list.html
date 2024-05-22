@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block body %}
+<h1 class="my-4">Иерархия сотрудников</h1>
+
+<!-- Кнопка для перехода к списку сотрудников -->
+<a href="{{ url_for('index') }}" class="btn btn-primary mb-4">Перейти к списку сотрудников</a>
+
+<!-- Контейнер для отображения иерархии сотрудников -->
+<div class="list-group">
+    <!-- Цикл для отображения каждого сотрудника, который находится на корневом уровне иерархии -->
+    {% for employee in root_employees %}
+        <div class="list-group-item list-group-item-action">
+            <!-- Имя сотрудника -->
+            <h5 class="mb-1">{{ employee.full_name }}</h5>
+            <!-- Должность сотрудника -->
+            <p class="mb-1">{{ employee.position }}</p>
+            <!-- Проверка, есть ли у сотрудника подчиненные -->
+            {% if employee.subordinates %}
+                <!-- Кнопка для отображения подчиненных -->
+                <button class="btn btn-sm btn-primary toggle-subordinates" data-employee-id="{{ employee.id }}">Показать подчиненных</button>
+                <!-- Список для отображения подчиненных -->
+                <ul class="list-group mt-2 subordinate-list" style="display: none;">
+                    <!-- Здесь будут подчиненные -->
+                </ul>
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="{{ url_for('static', filename='js/sub_subordinates.js') }}"></script>
+{% endblock %}
