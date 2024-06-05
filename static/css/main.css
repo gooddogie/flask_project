@@ -2,3 +2,6 @@ body {
     margin: 0;
     font-family: sans-serif;
 }
+div.mb-4 {
+    margin-bottom: 20px;
+}

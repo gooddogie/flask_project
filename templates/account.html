@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block body %}
+<html lang="ru">
+<h1>Аккаунт</h1>
+<p>Пользователь: {{ current_user.username }}</p>
+<p>Email: {{ current_user.email }}</p>
+
+<!-- Отображение фотографии пользователя, если она загружена -->
+<div class="mb-4">
+{% if current_user.photo %}
+    <img src="{{ url_for('static', filename='photos/' + current_user.photo) }}" alt="Фотография пользователя">
+{% else %}
+    <p>Фотография не загружена</p>
+{% endif %}
+</div>
+
+<div class="mb-4">
+<!-- Кнопки для выхода, перехода на главную страницу и редактирования профиля -->
+<a href="{{ url_for('account_settings') }}" class="btn btn-info">Редактировать профиль</a>
+<a href="{{ url_for('index') }}" class="btn btn-primary">На главную</a>
+<a href="{{ url_for('logout') }}" class="btn btn-danger">Выйти</a>
+</div>
+</html>
+{% endblock %}

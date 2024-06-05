@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block body %}
+<html lang="ru">
+<h1>Аккаунт</h1>
+<form method="POST" enctype="multipart/form-data">
+    <!-- Поле для изменения имени пользователя -->
+    <div class="mb-3">
+        <label for="username" class="form-label">Имя пользователя</label>
+        <input type="text" class="form-control" id="username" name="username" value="{{ current_user.username }}">
+    </div>
+    <!-- Поле для изменения электронной почты -->
+    <div class="mb-3">
+        <label for="email" class="form-label">Электронная почта</label>
+        <input type="email" class="form-control" id="email" name="email" value="{{ current_user.email }}">
+    </div>
+    <!-- Поле для загрузки новой фотографии -->
+    <div class="mb-3">
+        <label for="photo" class="form-label">Новая фотография</label>
+        <input type="file" class="form-control" id="photo" name="photo">
+    </div>
+    <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+</form>
+</html>
+{% endblock %}
